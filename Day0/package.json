@@ -1,0 +1,14 @@
+{
+  "name": "day0",
+  "version": "1.0.0",
+  "main": "fireup.js",
+  "scripts": {
+    "start":"npx nodemon fireup.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
