@@ -1,7 +1,9 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const jwtPassword = '#%^&&*6fgasvvgc32786';
 
 const app = express();
+app.use(express.json());
 
 const ALL_USERS = [
     {
@@ -26,3 +28,42 @@ const ALL_USERS = [
 },
 ];
 
+//function to check user OR Authentication
+function userExist(username,password){
+    let userExist = false;
+    for(let i=0;i<ALL_USERS.length;i++){
+        if(ALL_USERS[i].username==username && ALL_USERS[i].password==password){
+            userExist = true;
+        }
+    }
+    return userExist;
+}
+
+//POST Route
+app.post('/signin',(req,res)=>{
+    const username = req.body.username;
+    const password = req.body.password;
+    const name = req.body.name;
+
+    if(!userExist(username,password)){
+        return res.status(403).json({
+            message: 'User not exit in the In Memory DB.',
+        })
+    }
+
+    let token = jwt.sign({username: username,name:name}, jwtPassword);
+    return res.json({
+        token,
+    });
+});
+
+
+//GET Route
+app.get('/users',(req,res)=>{
+
+})
+
+
+app.listen(3000,()=>{
+    console.log('App is running at Port 3000.');
+})
