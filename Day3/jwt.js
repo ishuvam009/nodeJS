@@ -60,6 +60,15 @@ app.post('/signin',(req,res)=>{
 
 //GET Route
 app.get('/users',(req,res)=>{
+    const token = req.headers.authorization;
+    const decode = jwt.verify(token,jwtPassword);
+    const username = decode.username;
+
+    const otherUsers = ALL_USERS.filter(usesr => usesr.username !== username);
+
+    res.json({
+        persons: otherUsers,
+    })
 
 })
 
