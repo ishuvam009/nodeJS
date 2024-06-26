@@ -1,22 +1,21 @@
 const express = require('express');
 const app = express();
+const zod = require('zod');
 
 app.use(express.json());
+
+const schema = zod.array(zod.number());
 
 app.post('/uaer/car-info',(req,res)=>{
     //cars = [].
 
     const cars = req.body.cars;
-    const carsLength =  cars.length;
+    const response =  schema.safeParse(cars);
 
-    res.send(`You have: ${carsLength} no of cars.`);
-})
-
-app.use( function(err,req,res,next) {
-    res.json({
-        message: 'Something went wrong :(',
+    res.send({
+        response
     });
-})
+});
 
 app.listen(3000,()=>{
     console.log('App is running at port 3000.');
