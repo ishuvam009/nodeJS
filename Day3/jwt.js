@@ -60,17 +60,33 @@ app.post('/signin',(req,res)=>{
 
 //GET Route
 app.get('/users',(req,res)=>{
-    const token = req.headers.authorization;
-    const decode = jwt.verify(token,jwtPassword);
-    const username = decode.username;
 
-    const otherUsers = ALL_USERS.filter(usesr => usesr.username !== username);
+    try {
+        const token = req.headers.authorization;
 
-    res.json({
-        persons: otherUsers,
-    })
+        if(!token){
+            return res.status(401).json({
+                message: 'No token Provided.',
+            })
+        }
 
-})
+        const decode = jwt.verify(token,jwtPassword);
+        const username = decode.username;
+        const otherUsers = ALL_USERS.filter(usesr => usesr.username !== username);
+
+        
+         res.json({
+            persons: ALL_USERS,
+        })
+
+    } catch (error) {
+        console.error(error.message);
+        res.status(401).json({
+            message: 'Invalid Token.',
+        })
+    }
+
+});
 
 
 app.listen(3000,()=>{
