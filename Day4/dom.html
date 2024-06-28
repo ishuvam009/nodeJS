@@ -24,13 +24,27 @@
     <div class="mainDiv" id="DOMChange"></div>
 
     <script>
-        function calculateSum(){
+         async function calculateSum(){
             const num1 = parseInt(document.getElementById('firstNum').value);
             const num2 = parseInt(document.getElementById('secondNum').value);
-            const ans = num1 + num2;
 
-            const element = document.getElementById('DOMChange');
-            element.innerHTML = ans;
+        //    const ansDOM = await fetch("http://localhost:3000/sumfTwo?a="+num1+"&b="+num2).then(function(response){
+        //         console.log(response);
+
+        //         response.text().then(function(ans){
+        //             console.log(ans);
+        //             document.getElementById("DOMChange").innerHTML = ans;
+        //         })
+        //    })
+           
+        const result = await fetch("http://localhost:3000/sumfTwo?a="+num1+"&b="+num2);
+        const DOMres = await result.text();
+
+        document.getElementById("DOMChange").innerHTML = DOMres;
+           
+           //const ans = await ansDOM.text();
+           
+           // document.getElementById('DOMChange').innerHTML = ans;
         }
     </script>
 </body>

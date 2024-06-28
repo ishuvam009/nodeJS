@@ -1,12 +1,14 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 
-app.get('/sumfTwo/',(ewq,res)=>{
-    const a = req.query.a;
-    const b = req.query.b;
+app.get('/sumfTwo/',(req,res)=>{
+    const a = parseInt(req.query.a);
+    const b = parseInt(req.query.b);
 
     const sum = a+b;
     res.send(`The sum of ${a} and ${b} is :  ${sum} `);
