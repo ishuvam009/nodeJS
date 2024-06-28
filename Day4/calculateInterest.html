@@ -22,16 +22,22 @@
     <div class="all" id="DOMChange"></div>
 
     <script>
-        async function intrestSum(){
-            const a = parseInt(document.getElementById('principal').value);
-            const b = parseInt(document.getElementById('rate').value);
-            const c = parseInt(document.getElementById('time').value);
+        async function intrestSum() {
+        const a = parseInt(document.getElementById('principal').value);
+        const b = parseInt(document.getElementById('rate').value);
+        const c = parseInt(document.getElementById('time').value);
 
-            const res = await fetch("http://localhost:3000/intrestCalculater?p="+a+"&r="+b+"&t="+c);
-            const ans = await res.text();
+        const res = await fetch(`http://localhost:3000/intrestCalculater?p=${a}&r=${b}&t=${c}`);
+        const ans = await res.text();
+        
+        // Extract the interest value from the response text
+        const interestMatch = ans.match(/Interest is: (\d+)/);
+        const interestValue = interestMatch ? parseInt(interestMatch[1]) : NaN;
 
-            document.getElementById('DOMChange').innerHTML = ans;
-        }
+        const formatted = new Intl.NumberFormat('en-IN').format(interestValue);
+
+        document.getElementById('DOMChange').innerHTML = formatted;
+    }
     </script>
 </body>
 </html>
