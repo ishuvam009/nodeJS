@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .all{
+            margin-top: 60px;
+            margin-left: 40px;
+        }
+    </style>
+    <title>Interest Calculater</title>
+</head>
+<body>
+    <div class="all">
+        <input placeholder="Enter Principal Amount" id="principal" type="text"> <br> <br>
+        <input placeholder="Enter Interest Rate" id="rate" type="text"> <br> <br>
+        <input placeholder="Enter Time" id="time" type="text"> <br> <br>
+
+        <button onclick="intrestSum()">Calculate Interest</button>
+    </div>
+    <div class="all" id="DOMChange"></div>
+
+    <script>
+        async function intrestSum(){
+            const a = parseInt(document.getElementById('principal').value);
+            const b = parseInt(document.getElementById('rate').value);
+            const c = parseInt(document.getElementById('time').value);
+
+            const res = await fetch("http://localhost:3000/intrestCalculater?p="+a+"&r="+b+"&t="+c);
+            const ans = await res.text();
+
+            document.getElementById('DOMChange').innerHTML = ans;
+        }
+    </script>
+</body>
+</html>
