@@ -12,12 +12,12 @@
     <title>DOM</title>
 </head>
 <body>
-    
+
     <div class="mainDiv">
         <br>
         <br>
-        <input type="text" placeholder="Enter firstst number" name="" id=""> <br> <br>
-        <input type="text" placeholder="Enter second number" name="" id=""> <br> <br>
+        <input type="text" placeholder="Enter firstst number" name="" id="firstNum"> <br> <br>
+        <input type="text" placeholder="Enter second number" name="" id="secondNum"> <br> <br>
         <button onclick="calculateSum()">Calculate Sum</button>
     </div>
 
@@ -25,7 +25,12 @@
 
     <script>
         function calculateSum(){
-            alert('HI');
+            const num1 = parseInt(document.getElementById('firstNum').value);
+            const num2 = parseInt(document.getElementById('secondNum').value);
+            const ans = num1 + num2;
+
+            const element = document.getElementById('DOMChange');
+            element.innerHTML = ans;
         }
     </script>
 </body>
