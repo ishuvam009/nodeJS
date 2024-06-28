@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.get('/sumfTwo/',(req,res)=>{
     const a = parseInt(req.query.a);
-    const b = parseInt(req.query.b);
+    const b = parseInt(req.query.b); 
 
     const sum = a+b;
     res.send(`The sum of ${a} and ${b} is :  ${sum} `);
