@@ -14,15 +14,23 @@
 <body>
     <div class="all">
         <input placeholder="Enter Principal Amount" id="principal" type="text"> <br> <br>
-        <input placeholder="Enter Interest Rate" id="rate" type="text"> <br> <br>
+        <input placeholder="Enter Interest Rate"  id="rate" type="text"> <br> <br>
         <input placeholder="Enter Time" id="time" type="text"> <br> <br>
 
-        <button onclick="intrestSum()">Calculate Interest</button>
+        <button onclick="debounceTimeout()">Calculate Interest</button>
     </div>
     <div class="all" id="DOMChange"></div>
 
     <script>
+
+        let timeout;
+            function debounceTimeout(){
+                clearTimeout(timeout);
+                timeout = setTimeout(intrestSum,3000);
+            }
+
         async function intrestSum() {
+
         const a = parseInt(document.getElementById('principal').value);
         const b = parseInt(document.getElementById('rate').value);
         const c = parseInt(document.getElementById('time').value);
