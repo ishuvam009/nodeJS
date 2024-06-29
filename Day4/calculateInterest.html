@@ -23,11 +23,21 @@
 
     <script>
 
+// In every 3 seconds a request will send regardless of how many times the button is clicked.
+
         let timeout;
-            function debounceTimeout(){
+        let isRequestInProgress = false;
+
+        function debounceTimeout() {
+            if (!isRequestInProgress) {
                 clearTimeout(timeout);
-                timeout = setTimeout(intrestSum,3000);
+                timeout = setTimeout(() => {
+                    intrestSum();
+                    isRequestInProgress = false;
+                }, 3000);
+                isRequestInProgress = true;
             }
+        }
 
         async function intrestSum() {
 
