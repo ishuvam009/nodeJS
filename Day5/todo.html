@@ -1,0 +1,39 @@
+<html>
+    <style>
+        .univer{
+            margin-top: 150px;
+            margin-left: 180px;
+        }
+        .domChai{
+            margin-top: 20px;
+            margin-left: 180px;
+        }
+    </style>
+<body>
+   <div class="univer">
+    <input type="text" id="title" placeholder="Title"> <br> <br>
+    <input type="text" id="description" placeholder="Description"> <br> <br>
+    <button onclick="todos()">Add Todo</button> <br> <br>
+   </div>
+
+   <div class="domChai" id="append"></div>
+
+   <script>
+        function todos(){
+            const title = document.getElementById('title').value;
+            const descri = document.getElementById('description').value;
+
+            const originalChild = document.createElement('div');
+            originalChild.innerHTML = title;
+            const originalChild2 = document.createElement('div')
+            originalChild2.innerHTML = descri;
+            const originalChild3 = document.createElement('button');
+            originalChild3.innerHTML = 'Mark As Done';
+            document.getElementById('append').appendChild(originalChild);
+            document.getElementById('append').appendChild(originalChild2);
+            document.getElementById('append').appendChild(originalChild3);
+            
+        }
+   </script>
+</body>
+</html>
